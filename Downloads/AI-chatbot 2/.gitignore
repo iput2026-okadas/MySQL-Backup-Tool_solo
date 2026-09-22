@@ -1,0 +1,18 @@
+# 環境変数（APIキーなどの機密情報）
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# エディタ
+.vscode/
+.idea/
