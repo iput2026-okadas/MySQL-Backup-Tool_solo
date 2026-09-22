@@ -1,0 +1,45 @@
+# 現在の認証ユーザー確認
+aws sts get-caller-identity --profile internship
+
+# プロファイル一覧確認
+aws configure list-profiles
+
+# 現在の設定確認
+aws configure list --profile internship
+
+# S3バケット一覧表示
+aws s3 ls --profile internship
+
+# バケット内一覧表示
+aws s3 ls s3://バケット名 --profile internship
+
+# バケット作成
+aws s3api create-bucket `
+  --bucket バケット名 `
+  --region ap-northeast-1 `
+  --create-bucket-configuration LocationConstraint=ap-northeast-1 `
+  --profile internship
+
+# ファイルアップロード
+aws s3 cp sample.txt s3://バケット名/ --profile internship
+
+# ZIPアップロード
+aws s3 cp backup-output.zip s3://バケット名/ --profile internship
+
+# manifest.jsonアップロード
+aws s3 cp backup-output2/manifest.json s3://バケット名/ --profile internship
+
+# バケット内のファイル確認
+aws s3 ls s3://バケット名 --recursive --profile internship
+
+# ファイルダウンロード
+aws s3 cp s3://バケット名/sample.txt . --profile internship
+
+# ファイル削除
+aws s3 rm s3://バケット名/sample.txt --profile internship
+
+# バケット内全削除
+aws s3 rm s3://バケット名 --recursive --profile internship
+
+# バケット削除
+aws s3 rb s3://バケット名 --force --profile internship

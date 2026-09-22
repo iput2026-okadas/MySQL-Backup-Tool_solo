@@ -1,0 +1,81 @@
+このファイルはAWSにアップロードする用のサンプルデータです。
+
+
+■ AWS S3アップロード動作確認メモ
+
+【AWS認証確認】
+aws sts get-caller-identity --profile internship
+
+利用中のAWSアカウント情報を確認するコマンド。
+正常に認証できているかを確認するために実行。
+
+--------------------------------------------------
+
+【S3バケット一覧確認】
+aws s3 ls --profile internship
+
+利用可能なS3バケット一覧を表示するコマンド。
+
+--------------------------------------------------
+
+【S3バケット詳細確認】
+aws s3api list-buckets --profile internship
+
+S3バケット情報をJSON形式で取得するコマンド。
+
+実行結果
+"Buckets": []
+
+となっていたため、利用可能な既存バケットは存在しなかった。
+
+--------------------------------------------------
+
+【S3バケット作成】
+aws s3 mb s3://ssg-test-bucket-20260911 --profile internship
+
+テスト用のS3バケットを作成。
+
+作成成功後の確認結果
+
+"Name": "ssg-test-bucket-20260911"
+"CreationDate": "2026-09-11T05:29:13+00:00"
+"BucketArn": "arn:aws:s3:::ssg-test-bucket-20260911"
+
+--------------------------------------------------
+
+【Python(boto3)によるアップロード】
+
+with open("aws_sample_upload.txt", "rb") as data:
+    s3.Bucket("ssg-test-bucket-20260911").put_object(
+        Key="aws_sample_upload.txt",
+        Body=data
+    )
+
+ローカルファイル aws_sample_upload.txt を
+S3バケット ssg-test-bucket-20260911 にアップロード。
+
+アップロード成功を確認。
+
+--------------------------------------------------
+
+【アップロード結果確認】
+aws s3 ls s3://ssg-test-bucket-20260911 --profile internship
+
+バケット内のオブジェクト一覧を表示。
+
+アップロードしたファイル
+aws_sample_upload.txt
+が存在することを確認。
+
+--------------------------------------------------
+
+■ 結果
+
+・AWS認証成功
+・S3接続成功
+・S3バケット作成成功
+・Python(boto3)によるファイルアップロード成功
+・アップロード後のファイル存在確認成功
+
+結論
+Python(boto3)を利用してAmazon S3へファイルを正常にアップロードできることを確認した。

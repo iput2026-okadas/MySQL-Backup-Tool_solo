@@ -1,0 +1,10 @@
+id,name,email
+7,山田太郎,taro@example.com
+8,Suzuki,suzuki@example.com
+9,,empty@example.com
+10,"カンマ,入り",comma@example.com
+11,"ダブル""クォート",quote@example.com
+12,"改行
+テスト",newline@example.com
+13,テストユーザー,test@example.com
+14,NULLMAN,NULL

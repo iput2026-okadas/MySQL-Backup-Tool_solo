@@ -1,0 +1,4 @@
+localhost
+root
+0426
+utf8mb4
